@@ -1,4 +1,7 @@
-# from the Python Standard Library
+"""
+A base32 implementations with functions for en- and decoding, as well
+as some utilities.
+"""
 import six
 import string
 
@@ -29,6 +32,9 @@ def _get_trailing_chars_without_lsbs(N, d):
     return s
 
 def get_trailing_chars_without_lsbs(N):
+    """
+    :returns: str
+    """
     precondition((N >= 0) and (N < 5), "N is required to be > 0 and < len(chars).", N=N)
     if N == 0:
         return chars
@@ -180,12 +186,22 @@ def init_s5():
 s5 = init_s5()
 
 def could_be_base32_encoded(s, s8=s8, tr=string.translate, identitytranstable=identitytranstable, chars=chars):
+    """
+    Check if a given (binary) string can be base32 encoded.
+
+    :returns: bool
+    """
     precondition(isinstance(s, six.binary_type), s)
     if s == '':
         return True
     return s8[len(s)%8][ord(s[-1])] and not tr(s, identitytranstable, chars)
 
 def could_be_base32_encoded_l(s, lengthinbits, s5=s5, tr=string.translate, identitytranstable=identitytranstable, chars=chars):
+    """
+    Check if a given (binary) string is possibly base32 encoded.
+
+    :returns: bool
+    """
     precondition(isinstance(s, six.binary_type), s)
     if s == '':
         return True
@@ -194,6 +210,14 @@ def could_be_base32_encoded_l(s, lengthinbits, s5=s5, tr=string.translate, ident
     return (((lengthinbits+4)/5) == len(s)) and s5[lengthinbits%5][ord(s[-1])] and not string.translate(s, identitytranstable, chars)
 
 def num_octets_that_encode_to_this_many_quintets(numqs):
+    """
+    Determine the number of octets needed to encode a given
+    number of quintets.
+
+    :param numqs: number of octets
+    :type numqs: int
+    :returns: int
+    """
     # Here is a computation that conveniently expresses this:
     return (numqs*5+3)/8
 
