@@ -105,6 +105,8 @@ def format_delta(time_1, time_2):
     """
     if time_1 is None:
         return "N/A"
+    if time_2 is None:
+        return "N/A"
     if time_1 > time_2:
         return '-'
     delta = int(time_2 - time_1)
