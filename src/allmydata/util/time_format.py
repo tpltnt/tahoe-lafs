@@ -112,11 +112,11 @@ def format_delta(time_1, time_2):
     delta = int(time_2 - time_1)
     seconds = delta % 60
     delta  -= seconds
-    minutes = (delta / 60) % 60
+    minutes = (delta // 60) % 60
     delta  -= minutes * 60
-    hours   = delta / (60*60) % 24
+    hours   = delta // (60*60) % 24
     delta  -= hours * 24
-    days    = delta / (24*60*60)
+    days    = delta // (24*60*60)
     if not days:
         if not hours:
             if not minutes:
