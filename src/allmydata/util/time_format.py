@@ -1,17 +1,35 @@
-# ISO-8601:
-# http://www.cl.cam.ac.uk/~mgk25/iso-time.html
+"""
+Handle time (formats) according to ISO-8601: http://www.cl.cam.ac.uk/~mgk25/iso-time.html
+"""
 
 import calendar, datetime, re, time
 
 def format_time(t):
+    """
+    Format time string according to ISO-8601.
+
+    :param t: timestamp
+    :type t: time.struct_time
+    :returns: str
+    """
     return time.strftime("%Y-%m-%d %H:%M:%S", t)
 
 def iso_utc_date(now=None, t=time.time):
+    """
+    Convert ISO timestamp to UTC.
+
+    :returns: datetime.datetime
+    """
     if now is None:
         now = t()
     return datetime.datetime.utcfromtimestamp(now).isoformat()[:10]
 
 def iso_utc(now=None, sep='_', t=time.time):
+    """
+    Convert ISO timestamp to UTC (with optional separator).
+
+    :returns: datetime.datetime
+    """
     if now is None:
         now = t()
     return datetime.datetime.utcfromtimestamp(now).isoformat(sep)
@@ -37,6 +55,13 @@ def iso_utc_time_to_seconds(isotime, _conversion_re=re.compile(r"(?P<year>\d{4})
     return calendar.timegm( (year, month, day, hour, minute, second, 0, 1, 0) ) + subsecfloat
 
 def parse_duration(s):
+    """
+    Parse given duration and return it in seconds.
+
+    :param s: duration to parse
+    :type s: str
+    :returns: int
+    """
     orig = s
     unit = None
     DAY = 24*60*60
@@ -62,11 +87,21 @@ def parse_duration(s):
     return int(s) * unit
 
 def parse_date(s):
-    # return seconds-since-epoch for the UTC midnight that starts the given
-    # day
+    """
+    Get seconds-since-epoch for the UTC midnight that starts the given day.
+
+    :param s: timestamp
+    :type s: str
+    :returns: int
+    """
     return int(iso_utc_time_to_seconds(s + "T00:00:00"))
 
 def format_delta(time_1, time_2):
+    """
+    Format difference between the two given timestamps as a  string of "days hours minutes seconds" (i.e. separated by space).
+
+    :returns: str (space separated values, '-', or 'N/A')
+    """
     if time_1 is None:
         return "N/A"
     if time_1 > time_2:
