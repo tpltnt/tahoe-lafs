@@ -98,9 +98,10 @@ def parse_date(s):
 
 def format_delta(time_1, time_2):
     """
-    Format difference between the two given timestamps as a  string of "days hours minutes seconds" (i.e. separated by space).
+    Format difference between the two given timestamps as a string of "days hours minutes seconds" (i.e. separated by space).
 
     :returns: str (space separated values, '-', or 'N/A')
+    :todo: raise proper errors instead of using coded return values
     """
     if time_1 is None:
         return "N/A"
