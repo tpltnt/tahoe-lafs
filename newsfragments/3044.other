@@ -1,0 +1,4 @@
+Ensuring compatibility of division operations between Python 2 and Python 3
+Documentation updates
+Minor bugfixes
+Added regression tests
