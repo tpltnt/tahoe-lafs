@@ -1,6 +1,8 @@
 #!/usr/bin/env python
-# This script generates a table of dependencies in HTML format on stdout.
-# It expects to be run in the tahoe-lafs-dep-eggs directory.
+"""
+This script generates a table of dependencies in HTML format on stdout.
+It expects to be run in the tahoe-lafs-dep-eggs directory.
+"""
 
 from __future__ import print_function
 
