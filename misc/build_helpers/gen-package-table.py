@@ -75,7 +75,7 @@ for fname in filenames:
 
 platform_independent_pkgs = pkgs - platform_dependent_pkgs
 
-width = 100 / (len(platform_dependent_pkgs) + 1)
+width = 100 // (len(platform_dependent_pkgs) + 1)
 
 def file_list(all_files, pkg):
     files = sorted([(pkg_resources.parse_version(n), n) for (p, n) in all_files if pkg == p])
