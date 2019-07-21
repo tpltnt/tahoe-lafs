@@ -173,7 +173,7 @@ class ValidatedExtendedURIProxy(unittest.TestCase):
     if _TMP % K != 0:
         _TMP += (K - (_TMP % K))
     TAIL_SEGSIZE = _TMP
-    _TMP = SIZE / SEGSIZE
+    _TMP = SIZE // SEGSIZE
     if SIZE % SEGSIZE != 0:
         _TMP += 1
     NUM_SEGMENTS = _TMP

@@ -604,7 +604,7 @@ class DownloadStatusPage(DownloadResultsRendererMixin, rend.Page):
     def color(self, server):
         h = hashlib.sha256(server.get_serverid()).digest()
         def m(c):
-            return min(ord(c) / 2 + 0x80, 0xff)
+            return min(ord(c) // 2 + 0x80, 0xff)
         return "#%02x%02x%02x" % (m(h[0]), m(h[1]), m(h[2]))
 
     def render_results(self, ctx, data):

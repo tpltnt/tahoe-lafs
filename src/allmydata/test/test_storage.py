@@ -1556,7 +1556,7 @@ class MDMFProxies(unittest.TestCase, ShouldFailMixin):
         else:
             sharedata = self.segment * 6
         self.sharedata = sharedata
-        blocksize = len(sharedata) / 3
+        blocksize = len(sharedata) // 3
         block = sharedata[:blocksize]
         self.blockdata = block
         prefix = struct.pack(">BQ32s16s BBQQ",
