@@ -108,6 +108,9 @@ class ControlServer(Referenceable, service.Service):
         return get_memory_usage()
 
     def remote_measure_peer_response_time(self):
+        """
+        :todo: check if needed (not called explicitly in the codebase)
+        """
         # I'd like to average together several pings, but I don't want this
         # phase to take more than 10 seconds. Expect worst-case latency to be
         # 300ms.
@@ -118,6 +121,7 @@ class ControlServer(Referenceable, service.Service):
         everyone = list(everyone) * num_pings
         d = self._do_one_ping(None, everyone, results)
         return d
+
     def _do_one_ping(self, res, everyone_left, results):
         if not everyone_left:
             return results
